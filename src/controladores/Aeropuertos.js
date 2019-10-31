@@ -15,7 +15,7 @@ router.use('/:aeropuerto', async (req,res,next) => {
 } , require('./Aeropuerto/Aeropuerto'));
 
 router.get('/', async (req, res) => {
-        const airports = await db.query("SELECT nombre, latitude, longitude, id_aeropuerto, ciudad FROM aeropuertos");
+        const airports = await db.query("SELECT nombre, latitude, longitude, id_aeropuerto, ciudad FROM aeropuertos ORDER BY ciudad DESC");
         res.json({status: 200, message: [...airports]}).status(200);
 })
 
