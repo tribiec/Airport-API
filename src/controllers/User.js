@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const verifyToken = require('../middlewares/verifyToken');
-const { checkToken } = require('../controladores/token');
+const { checkToken } = require('./auth/Token');
 
 router.post('/check', verifyToken, (req, res) => {
   checkToken(req.token,(err, authData) => {
@@ -17,11 +17,11 @@ router.post('/check', verifyToken, (req, res) => {
       }).status(200);
     }
   })
-})
+});
 
 router.post('/login', (req, res) => {
   const {checkUser} = require('./auth/Login');
   checkUser({correo: req.body.correo, clave: req.body.clave},res); 
-})
+});
 
 module.exports = router;

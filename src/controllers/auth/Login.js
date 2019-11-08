@@ -1,7 +1,7 @@
-const db = require('../../database/Conexion');
-const { createToken } = require('../../controladores/token')
+const User = require('../../models/User');
+const { createToken } = require('../auth/Token');
 const checkUser = async ({ correo, clave }, res) => {
-    let query = await db.query(`SELECT * FROM users WHERE correo = '${correo}'`);
+    let query = await User({solicitud: 'User_correo', params: [correo]});
     if (query.length === 0) {
         //! Usuario no existe
         res.json({

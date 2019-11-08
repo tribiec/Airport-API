@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const createToken = (user, callback) => {
-     jwt.sign(user, 'aeropuert_jeje', { expiresIn: '10m' }, callback);
+     jwt.sign(user, 'aeropuert_jeje', { expiresIn: '5m' }, callback);
 }
 const checkToken = (token,callback) => {
   jwt.verify(token, 'aeropuert_jeje', callback);
