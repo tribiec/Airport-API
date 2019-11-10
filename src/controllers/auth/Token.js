@@ -1,8 +1,11 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
+
 const createToken = (user, callback) => {
      jwt.sign(user, 'aeropuert_jeje', { expiresIn: '5m' }, callback);
 }
-const checkToken = (token,callback) => {
+
+const verifyToken = (token,callback) => {
   jwt.verify(token, 'aeropuert_jeje', callback);
 }
-module.exports = { createToken, checkToken };
+
+export { createToken, verifyToken };

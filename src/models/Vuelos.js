@@ -1,8 +1,8 @@
-const Loader = require('./Loader');
+import Loader from './loader';
 
 const Vuelos = async ({ solicitud, params }) => {
     const query = querys(solicitud);
-    return await Loader({query, params});
+    return await Loader({ query, params });
 }
 
 const querys = (solicitud) => {
@@ -11,9 +11,11 @@ const querys = (solicitud) => {
             return "SELECT v.id_vuelo, v.id_status, airOrigen.nombre AS origen_nombre, airOrigen.id_aeropuerto AS origen_id, airOrigen.ciudad as origen_ciudad, airDestino.nombre AS destino_nombre, airDestino.id_aeropuerto AS destino_id, airDestino.ciudad AS destino_ciudad, aerolinea.nombre AS aerolinea_nombre, v.date, v.time FROM vuelos AS v INNER JOIN rutas as r ON v.id_ruta = r.id_ruta INNER JOIN aeropuertos AS airDestino ON r.destino = airDestino.id_aeropuerto INNER JOIN aeropuertos as airOrigen on r.origen = airOrigen.id_aeropuerto INNER JOIN aerolineas AS aerolinea ON v.id_aerolinea = aerolinea.id_aerolinea WHERE (r.destino = '?' OR r.origen = '?') AND v.date = '?/?/?' ORDER BY date ASC, time ASC";
         case 'actual':
             return "SELECT v.id_vuelo, v.id_status, airOrigen.nombre AS origen_nombre, airOrigen.id_aeropuerto AS origen_id, airOrigen.ciudad as origen_ciudad, airDestino.nombre AS destino_nombre, airDestino.id_aeropuerto AS destino_id, airDestino.ciudad AS destino_ciudad, aerolinea.nombre AS aerolinea_nombre, v.date, v.time FROM vuelos AS v INNER JOIN rutas as r ON v.id_ruta = r.id_ruta INNER JOIN aeropuertos AS airDestino ON r.destino = airDestino.id_aeropuerto INNER JOIN aeropuertos as airOrigen on r.origen = airOrigen.id_aeropuerto INNER JOIN aerolineas AS aerolinea ON v.id_aerolinea = aerolinea.id_aerolinea WHERE (r.destino = '?' OR r.origen = '?') AND v.date = '?/?/?' AND v.time > '?:?' ORDER BY date ASC, time ASC";
+        case 'agencia':
+            return 'SELECT V.id_vuelo, airOrigen.id_aeropuerto AS origen_id, airOrigen.nombre AS origen_nombre, airOrigen.ciudad as origen_ciudad, airDest.id_aeropuerto AS destino_id, airDest.nombre as destino_nombre, airDest.ciudad as destino_ciudad, V.date, V.time, v.id_status, aerolineas.id_aerolinea, aerolineas.nombre AS aerolinea_nombre FROM vuelos_agencias as VA INNER JOIN vuelos AS V ON VA.id_vuelo = V.id_vuelo INNER JOIN rutas AS R ON V.id_ruta = R.id_ruta INNER JOIN aeropuertos AS airDest ON r.destino = airDest.id_aeropuerto INNER JOIN aeropuertos AS airOrigen ON r.origen = airOrigen.id_aeropuerto INNER JOIN aerolineas ON v.id_aerolinea = aerolineas.id_aerolinea WHERE VA.id_agencia = ?';
         default:
             return '';
     }
 }
 
-module.exports = Vuelos;
+export default Vuelos;

@@ -1,4 +1,4 @@
-const Loader = require('./Loader');
+import Loader from './loader';
 
 const User = async ({ solicitud, params }) => {
     const query = querys(solicitud);
@@ -7,11 +7,11 @@ const User = async ({ solicitud, params }) => {
 
 const querys = (solicitud) => {
     switch (solicitud) {
-        case 'User_correo':
+        case 'correo':
             return "SELECT * FROM users WHERE correo = '?'";
         default:
             return '';
     }
 }
 
-module.exports = User;
+export default User;

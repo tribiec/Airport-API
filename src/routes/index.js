@@ -1,11 +1,17 @@
-const express = require('express');
-const router = express.Router();
-router.use('/user', require('../controllers/User'));
-router.use('/aeropuertos', require('../controllers/Aeropuertos'));
-router.use('/agencias', require('../controllers/Agencias'));
-router.use('/admin', require('../controllers/Admin'));
-router.use('/*', (req, res) => {
+import express from 'express';
+import userRoute from './user.routes';
+import adminRoute from './admin.routes';
+import aeropuertoRoute from './aeropuerto.routes';
+import agenciaRoute from './agencia.routes';
+
+var router = express.Router();
+
+router.use('/user', userRoute);
+router.use('/admin', adminRoute);
+router.use('/aeropuertos', aeropuertoRoute);
+router.use('/agencias', agenciaRoute);
+router.get('/*', (req, res) => {
     res.sendStatus(400);
 });
 
-module.exports = router; 
+export default router;

@@ -1,4 +1,4 @@
-const Loader = require('./Loader');
+import Loader from './loader';
 
 const Aeropuerto = async ({ solicitud, params }) => {
     const query = querys(solicitud);
@@ -16,4 +16,4 @@ const querys = (solicitud) => {
     }
 }
 
-module.exports = Aeropuerto;
+export default Aeropuerto;

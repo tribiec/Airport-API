@@ -1,4 +1,4 @@
-const db = require('../database/Conexion');
+import db from '../database';
 
 const Loader = async ({ query, params }) => {
     if (params) {
@@ -30,4 +30,4 @@ const getData = async (dato) => {
     }).then(query => query).catch(err => console.log(err));
 }
 
-module.exports = Loader;
+export default Loader;

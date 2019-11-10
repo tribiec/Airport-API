@@ -1,7 +1,9 @@
-const User = require('../../models/User');
-const { createToken } = require('../auth/Token');
-const checkUser = async ({ correo, clave }, res) => {
-    let query = await User({solicitud: 'User_correo', params: [correo]});
+import userModelo from '../../models/user';
+import { createToken } from './Token';
+
+const loginUser = async ({ correo, clave }, res) => {
+    
+    let query = await userModelo({solicitud: 'correo', params: [correo]});
     if (query.length === 0) {
         //! Usuario no existe
         res.json({
@@ -28,5 +30,7 @@ const checkUser = async ({ correo, clave }, res) => {
             }).status(401)
         }
     }
+
 }
-module.exports = { checkUser };
+
+export default loginUser;

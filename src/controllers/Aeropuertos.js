@@ -1,22 +1,16 @@
-const express = require('express');
-const router = express.Router();
-const Aeropuerto = require('../models/Aeropuerto');
+import aeropuertoModelo from '../models/aeropuerto';
 
-router.get('/', async (req, res) => {
-        const airports = await Aeropuerto({solicitud: 'aeropuertos'});
-        res.json({status: 200, message: [...airports]}).status(200);
-});
+class Aeropuertos {
 
-router.use('/:aeropuerto', async (req,res,next) => {
-    req.aeropuerto = req.params.aeropuerto.toUpperCase();
-    const query = await Aeropuerto({solicitud: 'aeropuerto', params: [req.aeropuerto]});
-    if(query.length > 0){
-        req.query = query;
-        next();
-    }else{
-        res.json({status: 404, message: "Aeropuerto no encontrado..."}).status(404);
+    static async getAeropuertos(req, res){
+        const aeropuertos = await aeropuertoModelo({ solicitud: 'aeropuertos' });
+        res.json({ status: 200, message: [...aeropuertos] }).status(200);
     }
-} , require('./Aeropuerto/Aeropuerto'));
 
+    static async getAeropuerto(req, res){
+        res.json({status: 200, message: { ...req.aeropuerto[0] }}).status(200);
+    }
 
-module.exports = router;
+}
+
+export default Aeropuertos;
