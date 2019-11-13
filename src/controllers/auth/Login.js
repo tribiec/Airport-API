@@ -3,7 +3,7 @@ import { createToken } from './Token';
 
 const loginUser = async ({ correo, clave }, res) => {
     
-    let query = await userModelo({solicitud: 'correo', params: [correo]});
+    let query = await userModelo.getUser_Correo([correo]);
     if (query.length === 0) {
         //! Usuario no existe
         res.json({

@@ -1,10 +1,10 @@
-import { checkToken } from './auth/Token';
+import { verifyToken } from './auth/Token';
 import loginUser from './auth/Login';
 
 class User {
 
   static async checkLogin(req, res) {
-    checkToken(req.token, (err, authData) => {
+    verifyToken(req.token, (err, authData) => {
       if (err) {
         res.status(401).json({
           status: 401,

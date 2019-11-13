@@ -2,7 +2,7 @@ import AeropuertoModelo from '../models/aeropuerto';
 
 const checkAeropuerto = async (req,res,next) => {
     const id_aeropuerto = req.params.id_aeropuerto.toUpperCase();
-    const aeropuerto = await AeropuertoModelo({solicitud: 'aeropuerto', params: [id_aeropuerto]});
+    const aeropuerto = await AeropuertoModelo.getAeropuerto([id_aeropuerto]);
     if(aeropuerto.length > 0){
         req.id_aeropuerto = id_aeropuerto;
         req.aeropuerto = aeropuerto;

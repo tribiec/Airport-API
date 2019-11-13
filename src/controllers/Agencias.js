@@ -7,7 +7,7 @@ class Agencias {
     }
 
     static async getAgencias(req, res) {
-        const agencias = await AgenciaModelo({ solicitud: 'Agencias' });
+        const agencias = await AgenciaModelo.getAgencias();
         if (agencias.length >= 1) {
             res.json({ status: 200, message: [...agencias] }).status(200);
         } else {
@@ -16,7 +16,7 @@ class Agencias {
     }
 
     static async getAgencias_Aeropuerto(req,res){
-        const agencias = await AgenciaModelo({ solicitud: 'Agencias_aero', params: [req.id_aeropuerto]});
+        const agencias = await AgenciaModelo.getAgencias_Aero([req.id_aeropuerto]);
         if (agencias.length >= 1) {
             res.json({ status: 200, message: [...agencias] }).status(200);
         } else {

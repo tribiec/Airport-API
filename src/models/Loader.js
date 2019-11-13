@@ -1,13 +1,13 @@
 import db from '../database';
 
-const Loader = async ({ query, params }) => {
+const Loader = async (query, params) => {
     if (params) {
         if (checkConsistencia(query, params)) {
             params.forEach(param => {
                 query = query.replace("?", param);
             });
         } else {
-            console.log("(Loader) Error en Params -->",query,params);
+            console.log("(Loader) Error en Params -->", query, params);
             return [];
         }
     }
