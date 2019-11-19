@@ -11,7 +11,7 @@ router.use('/admin', adminRoute);
 router.use('/aeropuertos', aeropuertoRoute);
 router.use('/agencias', agenciaRoute);
 router.get('/*', (req, res) => {
-    res.sendStatus(404);
+    res.sendStatus(400);
 });
 
 export default router;

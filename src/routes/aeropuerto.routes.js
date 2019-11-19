@@ -9,7 +9,6 @@ const router = express.Router();
 router.get('/', Aeropuertos.getAeropuertos);
 router.get('/:id_aeropuerto/', checkAeropuerto, Aeropuertos.getAeropuerto);
 router.get('/:id_aeropuerto/vuelos/', checkAeropuerto, Vuelos.getVuelos_Aeropuerto);
-router.get('/:id_aeropuerto/vuelos/reiniciar', checkAeropuerto, Vuelos.reiniciar);
 router.get('/:id_aeropuerto/agencias/', checkAeropuerto, Agencias.getAgencias_Aeropuerto);
 
 export default router;
