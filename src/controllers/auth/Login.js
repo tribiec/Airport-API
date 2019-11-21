@@ -14,7 +14,7 @@ const loginUser = async ({ correo, clave }, res) => {
         query = query[0]
         //* Acceso Correcto
         if (query.clave === clave) {
-            delete query.clave, delete query.id_user, delete query.super_user;
+            delete query.clave, delete query.super_user;
             createToken(query, (err, token) => {
                 query.token = token
                 res.json({

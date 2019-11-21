@@ -1,17 +1,17 @@
 import VuelosModelo from '../models/vuelos';
 
-const date = new Date(Date.now());
+const _date = new Date(Date.now());
 
 class Vuelos {
 
     static async getVuelos_Aeropuerto(req, res) {
 
         const tiempo = {
-            minutos: date.getMinutes(),
-            hora: date.getHours(),
-            dia: date.getDate(),
-            mes: date.getMonth(),
-            year: date.getFullYear()
+            minutos: _date.getMinutes(),
+            hora: _date.getHours(),
+            dia: _date.getDate(),
+            mes: _date.getMonth(),
+            year: _date.getFullYear()
         };
 
         const vuelos = await VuelosModelo.getTodos([req.id_aeropuerto, req.id_aeropuerto, (tiempo.mes + 1), tiempo.dia, tiempo.year]);
