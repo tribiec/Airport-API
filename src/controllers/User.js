@@ -23,23 +23,14 @@ class User {
   }
 
   static async verBoletos(req, res) {
-    verifyToken(req.token, async (err, authData) => {
-      if (err) {
-        res.status(401).json({
-          status: 401,
-          message: "Token Invalid"
-        });
-      } else {
         //* OK!
-        const tickets = await Ticket.getTickets([authData.id_user]);
+        const tickets = await Ticket.getTickets([req.params.id]);
         if (tickets.length > 0) {
           res.json({status: 200, message: [...tickets]}).status(200);
         } else {
           res.json({status: 404, message: "No se encontraron Boletos"}).status(404);
         }
         //*
-      }
-    })
   }
 
   static async comprarBoleto(req, res) {

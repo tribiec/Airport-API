@@ -8,6 +8,6 @@ const router = express.Router();
 router.post('/check', searchToken, Users.checkLogin);
 router.post('/login', Users.Login);
 router.post('/comprar', Users.comprarBoleto);
-router.post('/boletos', searchToken, Users.verBoletos);
+router.get('/:id/boletos', Users.verBoletos);
 
 export default router;
