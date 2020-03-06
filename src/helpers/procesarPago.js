@@ -1,6 +1,6 @@
 import instapago from 'instapago';
 
-const i = instapago('FF77E535-E814-48CD-B83D-1CB2206CA4EE', '8237f47922325aa450e54298f142cd9e');
+const i = instapago(process.env.INSTA_PAGO_KEY1,process.env.INSTA_PAGO_KEY2);
 
 const procesarPago = ({ name, id, number, cvc, expiry, monto}) => {
     return i.pay({

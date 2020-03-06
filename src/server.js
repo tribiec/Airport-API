@@ -3,11 +3,10 @@ import express from 'express';
 import path from 'path';
 import cors from 'cors';
 import router from './routes'
-// import "core-js/stable";
 import "regenerator-runtime/runtime";
 //* Settings
 const app = express();
-const port = process.env.PORT || 9000;
+const port = process.env.PORT || 9500;
 //* Middlewares & Router
 app.use(express.static(path.resolve(__dirname,'client','build')))
 app.use(cors());

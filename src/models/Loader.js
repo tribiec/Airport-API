@@ -19,10 +19,10 @@ const checkConsistencia = (query, params) => {
     return (numParametros === params.length) ? true : false;
 }
 
-const getData = async (dato) => {
+const getData = (dato) => {
     return new Promise((resolve, reject) => {
         try {
-            const query = db.query(dato);
+            const query = db.query(dato).then(e => e.rows);
             resolve(query);
         } catch (err) {
             reject(err);

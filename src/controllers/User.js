@@ -2,8 +2,6 @@ import { verifyToken } from './auth/Token';
 import Ticket from '../models/ticket';
 import loginUser from './auth/Login';
 import procesarPago from '../helpers/procesarPago';
-import decode from 'decode-html'
-import pdf from 'html-pdf';
 class User {
 
   static async checkLogin(req, res) {
@@ -44,11 +42,8 @@ class User {
       } else {
         const pago = await procesarPago({ ...req.body.pago, ...req.body.user });
         if (pago.success) {
-          // console.log("usuario:");
-          // console.log(req.body.user);
-          // console.log("vuelo");
-          // console.log(req.body.vuelo);
           const { nombre, apellido, correo } = req.body.user;
+          /*
           pdf.create(decode(pago.voucher)).toFile(`./facturas/${pago.reference}.pdf`, async function (_err, _res) {
             if (_err) {
               console.log(_err);
@@ -74,6 +69,7 @@ class User {
               res.json({ status: 200, message: "Pago Realizado con Exito... Enviando Factura a Correo" }).status(200);
             }
           });
+          */
         }
       }
     });
