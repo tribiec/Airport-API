@@ -16,7 +16,7 @@ app.use(express.json());
 app.use('/api', router);
 //* Aeropuerto Front
 app.get('/*', (req,res) => {
-    res.sendFile(path.resolve(__dirname,'client','build','index.html'));
+    res.send("<h1>Aeropuerto API</h1>");
 });
 //* Run Server
 app.listen(port, () => {
